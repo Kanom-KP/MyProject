@@ -1,0 +1,87 @@
+<% layout('../views/layouts/profileboilerplate') %>
+<link rel="stylesheet" href="/css/profilepage.css">
+
+<script>
+    function myFunction() {
+      var x = document.getElementById("new-address");
+      if (x.style.display === "none") {
+        x.style.display = "block";
+      } else {
+        x.style.display = "none";
+      }
+    }
+    </script>
+
+
+    <div class="detail">
+        <p class="name">User Detail</p>
+        <p><b>Username : </b>
+            <%= user.username %>
+        </p>
+        <p><b>Email : </b>
+            <%= user.email %>
+        </p>
+
+    </div>
+
+    <p><b class="header">Addresses</b></p>
+<% if(currentUser && currentUser.address !== ['']) {%>
+    <% for (let address of user.addresses) {%>
+
+        <div class="user-address">
+            <p><span class="address-name"> >> <%= address.name %> </span></p>
+
+            <table>
+                <tr>
+                    <td class="topic">Name </td>
+                    <td class="value"> <%= address.fullname %> </td>
+                </tr>
+                <tr>
+                    <td class="topic">Address </td>
+                    <td class="value"> <%= address.detail %> , <%= address.city %> , <%= address.zipcode %> </td>
+                </tr>
+                <tr>
+                    <td class="topic">Phone </td>
+                    <td class="value"> <%= address.phone %> </td>
+                </tr>
+
+            </table>
+                    <form class="text-center" action="/user/profile/<%=currentUser._id%>/address/<%=address._id%>?_method=DELETE" method="POST">
+                        <button class="btn btn-sm btn-danger">Delete</button>
+                    </form>
+        </div>
+        <% } %>
+        <% } else { %>
+            <p> You don't have address yet</p>
+        <% } %>
+
+            <!-- Add new Address -->
+            <p class="header"><button class="btn add-btn" onclick="myFunction()">+ Add new Address</button></p>
+            <div  >
+                
+                <form id="new-address" style="display: none;" class="new-address" action="/user/profile/<%=user._id%>/addresses" method="POST">
+                
+                    <label for="name">Name of this Address</label>
+                    <input type="text" name="address[name]" id="name" placeholder="Ex: Home / Workplace" required></input><br>
+
+                    <label for="fullname">Firstname - Lastname</label>
+                    <input type="text" name="address[fullname]" id="fullname" placeholder="Firstname - Lastname" required></input><br>
+
+                    <label for="phone">Phone Number</label>
+                    <input type="text" name="address[phone]" id="phone" placeholder="Phone Number" required></input><br>
+
+                    <label for="detail">Address Detail</label>
+                    <input type="text" name="address[detail]" id="detail" placeholder="detail" required></input><br>
+
+                    <label for="city">City</label>
+                    <input type="text" name="address[city]" id="city" placeholder="City" required></input><br>
+
+                    <label for="zipcode">Zipcode</label>
+                    <input type="number" name="address[zipcode]" id="zipcode" placeholder="Zipcode" required></input><br>
+
+                    
+                    
+                    <p class="text-center"><button class="btn btn-sm btn-success" type="submit"> Save </button></p>
+                </form>
+
+            </div>

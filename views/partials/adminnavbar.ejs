@@ -1,0 +1,100 @@
+<!-- FIX ELEMENT - TOP NAV/SIDE NAV -->
+<div class="mybody">
+
+    <!-- Main Nav Show when Middle++ -->
+    <div>
+        <nav class="navbar navbar-dark fixed-top showlg">
+            <a class="navbar-brand">FurFriends</a>
+            <a href="/admin/user/all"> All User </a>
+            <a href="/admin/product/all"> All Product </a>
+
+            
+            <span class="navbar-text">
+    
+                    <a href="/product/all"> Back to user ver. </a>
+
+            </span>
+        </nav>
+    </div>
+</div>
+
+
+<style>
+    /* RESPONSIVE RESPONSIVE RESPONSIVE RESPONSIVE RESPONSIVE RESPONSIVE */
+    @media only screen and (max-width: 576px) {
+
+        .mycontent,
+        .mybody {
+            margin: 0px !important;
+        }
+
+        .navbar {
+            padding-left: 2% !important;
+        }
+    }
+
+    @media only screen and (min-width: 577px) {
+
+        .mycontent,
+        .mybody {
+            margin: 0px !important;
+            padding: 0 2% !important;
+        }
+
+        .navbar {
+            padding:0  2% !important;
+        }
+
+    }
+
+    @media only screen and (min-width: 768px) {
+
+        .mycontent,
+        .mybody{
+
+            margin-left: 15% !important;
+            margin-right: 15% !important;
+        }
+
+        .navbar {
+            padding:0  17% !important;
+        }
+
+    }
+
+    /* BODY BODY BODY BODY BODY BODY BODY BODY BODY*/
+    .mybody {
+        background-color: white;
+        line-height: 1.2;
+        margin-left: 10%;
+        margin-right: 10%;
+        padding-top: 55px !important;
+    }
+
+    /* NAVBAR NAVBAR NAVBAR NAVBAR NAVBAR NAVBAR NAVBAR*/
+    .navbar {
+        color: white;
+        background-color: #e1b183;
+        height: 55px;
+    }
+
+    .navbar-brand {
+        font-family: "SchoolBell", cursive !important;
+        letter-spacing: 1px;
+        font-size: 1.5rem !important;
+    }
+
+    .navbar-text button {
+        color: white;
+    }
+
+    .navbar-text button:hover {
+        color: rgb(93, 93, 93);
+    }
+
+    .navbar a {
+        color:white;
+
+    }
+
+</style>

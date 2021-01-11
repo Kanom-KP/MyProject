@@ -1,0 +1,128 @@
+<% layout('../views/layouts/adminboilerplate') %> 
+
+    <div class="container detail">
+    <p class="name"><%= product.name %></p>
+    
+    <div class="text-center">
+    <% for( let image of product.img ) {%>
+        <img src="<%= image.url %>" class="image">
+        <% } %>
+    </div>
+    <p><b>Brand : </b>  <%= product.brand %>  </p>
+    <p><b>Price : </b>  <%= product.price %> &#3647; </p>
+    <p><b>Tag : </b> <span class="tag"><%= product.tag[0] %></span> <span class="tag"><%= product.tag[1]%></span></p>
+    <p><b>Quantity : </b>  <%= product.qty %>  left in stock </p>
+    <p><b>Detail : </b>  <%= product.detail %>  </p>
+    <p><b>Status : </b>  <%= product.isAvailable === true ? 'Active': 'Inactive'%>  </p>
+    
+    </div>
+
+
+<div class="button text-center">
+    <div class="row editndel text-center">
+        <button class="btn edit-btn"><a href="/admin/product/<%=product._id%>/edit">Edit</a></button>
+    
+        <form id="delete-form" action="/admin/product/<%=product._id%>?_method=DELETE" method="POST">
+        <button class="btn del-btn" onclick="return confirmation('Are you sure?');">Delete</button> </form>
+
+    </div>
+    <button class="btn back-btn"><a href="/admin/product/all"><< Back to all product</a></button>
+</div>
+    <!-- STYLE STYLE -->
+
+<script>
+function confirmation(){
+    if(confirm('Are you sure?')) {
+        document.getElementById('delete-form').submit();
+    } else {
+        return false;
+    }
+    }
+</script>
+
+    <style>
+
+.container {
+    margin-top: 0!important;
+
+}
+
+.detail {
+    width: fit-content;
+    margin: auto!important;
+    margin-top: 25px;
+}
+
+.editndel {
+    width: fit-content;
+    margin: auto;
+}
+
+.name {
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.tag {
+    font-size: 0.8rem;
+    background: rgb(189, 136, 93);
+    color: white;
+    padding: 3px 5px;
+    border-radius: 5px;
+    margin-left:5px ;
+}
+
+/* Button */
+
+.btn {
+    font-weight: 600;
+    color: white;
+    height: 40px!important;
+    margin: 2px 5px;
+    border-radius: 10px;
+}
+
+.btn:hover {
+    color: rgb(255, 255, 255);
+    text-decoration: underline 1px white;
+
+}
+
+.back-btn {
+ background-color: #e1b183;
+ color: white;
+ font-weight: 600;
+ width: 220px
+}
+
+.edit-btn {
+    font-size: 1rem;
+    background-color: rgb(48, 156, 71);
+    padding: 3px;
+    color: rgb(255, 255, 255);
+    width: 103px;
+}
+
+.del-btn {
+    font-size: 1rem;
+    background-color: rgb(221, 80, 61);
+    padding: 3px;
+    color: rgb(255, 255, 255);
+    width: 103px;
+}
+
+.edit-btn a, .back-btn a {
+    color: rgb(255, 255, 255);
+    padding: 3px;
+}
+
+/* Product Image */
+.image {
+    max-width: 200px;
+    margin: 5px 5px 15px 5px;
+    border: rgb(214, 214, 214) 1px solid;
+    border-radius: 5px;
+}
+
+
+    </style>

@@ -1,0 +1,189 @@
+<% layout('../views/layouts/adminboilerplate') %>
+    <div>
+        <!-- <div class="addnew">
+            <button class="btn add-btn"><a href="/admin/addnew">+Add New Product</a></button> </form>
+        </div> -->
+        <h3 class="text-center">All Users</h3>
+        <table id="table-product" class="display">
+            <thead>
+                <tr class="text-center">
+                    <th>Username</th>
+                    <th>E-mail</th>
+                    <th>**</th>
+                    <th>Role</th>
+                    <th>**</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% for (let u of user) { %>
+                    <tr>
+                        <td>
+                            <%= u.username %>
+                        </td>
+                        <td>
+                            <%= u.email %>
+                        </td>
+                        <td class="text-center">
+                            ****
+                        </td>
+
+                        <td class="text-center">
+                            <%= u.isAdmin===true ? 'Admin' : 'User' %>
+                        </td>
+
+                        <td class="text-center table-btn"><button class="btn edit-btn"><a
+                                    href="/admin/user/<%=u._id%>">VIEW</a></button>
+                            <form id="delete-form" action="/admin/user/<%=u._id%>?_method=DELETE" method="POST">
+                                <button class="btn del-btn"
+                                    onclick="return confirmation('Are you sure?');">DELETE</button>
+                            </form>
+                        </td>
+
+
+                    </tr>
+                    <% } %>
+            </tbody>
+        </table>
+
+
+
+    </div>
+
+    <!-- STYLE STYLE STYLE -->
+    <style>
+        .mycontent,
+        .mybody {
+            max-width: 1400px !important;
+            margin: auto !important;
+        }
+
+        .addnew {
+            text-align: end;
+            margin-right: 10px;
+            margin-top: none;
+        }
+
+        .add-btn {
+            font-size: 0.9rem;
+            font-weight: 600;
+            background-color: rgb(39, 158, 238);
+            padding: 3px;
+            color: rgb(255, 255, 255);
+            width: 155px;
+            height: 50px;
+            border-radius: 10px;
+
+        }
+
+        .dataTables_wrapper {
+            padding: 10px!important;
+            max-width: 1400px;
+            margin: auto;
+
+        }
+
+        .dataTables_filter input {
+            height: 26px;
+        }
+
+        table {
+            font-size: 0.8rem !important;
+            margin-top: 15px !important;
+            width: 100% !important;
+            margin: auto;
+            background-color: rgb(255, 249, 243);
+        }
+
+        thead {
+            border-left: 1px solid white;
+            background-color: darkgrey;
+            color: white;
+            padding: 1 15px 1 5px !important;
+        }
+
+        th {
+            border-left: 1px solid white;
+            padding-right: 17px !important;
+            padding-left: 5px !important;
+
+        }
+
+        td {
+            font-size: 0.8rem;
+            padding: 5px 10px;
+            border-top: 1px solid rgb(226, 226, 226);
+            border-left: 1px solid white;
+        }
+
+        tr {
+            height: 40px !important;
+        }
+
+        tr:nth-child(even) {
+            background-color: #ececec;
+        }
+
+        .dataTables_info,
+        .dataTables_length,
+        .dataTables_filter,
+        .paginate_button {
+            font-size: 0.8rem !important;
+        }
+
+        .dataTables_info {
+            margin-bottom: 10px;
+        }
+
+        .paginate_button {
+            padding: 3px 8px !important;
+        }
+
+        .next {
+            position: unset !important;
+            font-weight: normal !important;
+        }
+
+        .edit-btn {
+            font-size: 0.6rem;
+            background-color: rgb(48, 156, 71);
+            padding: 3px;
+            color: rgb(255, 255, 255);
+            margin: 2px 0;
+            width: 55px;
+        }
+
+        .edit-btn a,
+        .add-btn a {
+            color: rgb(255, 255, 255);
+            padding: 3px;
+        }
+
+        .del-btn {
+            font-size: 0.6rem;
+            background-color: rgb(221, 80, 61);
+            padding: 3px;
+            color: rgb(255, 255, 255);
+            margin: 2px 0;
+            width: 55px;
+        }
+
+        .table-btn {
+            margin: 0;
+            width: fit-content;
+            text-align: center;
+        }
+    </style>
+
+    <script>
+        function confirmation() {
+            if (confirm('Are you sure?')) {
+                document.getElementById('delete-form').submit();
+            } else {
+                return false;
+            }
+        }
+        $(document).ready(function () {
+            $('#table-product').DataTable();
+        });
+
+    </script>

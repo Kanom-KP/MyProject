@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+    integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+
+  <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Schoolbell&display=swap" rel="stylesheet">
+  <title>FF template</title>
+  <!-- jQuery and JS bundle w/ Popper.js -->
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
+    crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+  <!-- FIX ELEMENT - TOP NAV/SIDE NAV -->
+
+    <%- include('../partials/navbar') %>
+
+      <!-- ALL CONTENT -->
+      <div class="mycontent">
+
+        <!-- BREADCRUMB -->
+        <div class="row">
+          <p class="directory"><a href="/product/all">Home </a>/</p>
+        </div>
+
+        <%- include('../partials/flash') %>
+
+
+
+
+          <%- body %>
+
+            <!-- SLIDESHOW -->
+            <!-- <div class="row">
+      <div class="slideshow-container col-6">
+        <div class="mySlides1">
+          <img src="C:\Code Test\PetShop Project\promo\promo1Artboard-2.png" style="width:100%">
+        </div>
+
+        <div class="mySlides1">
+          <img src="C:\Code Test\PetShop Project\promo\promo2Artboard-2.png" style="width:100%">
+        </div>
+
+        <div class="mySlides1">
+          <img src="C:\Code Test\PetShop Project\promo\promo3Artboard-2.png" style="width:100%">
+        </div>
+
+        <a class="prev pl-0 pt-2" onclick="plusSlides(-1, 0)">&#10094;</a>
+        <a class="next pr-3 pt-2" onclick="plusSlides(1, 0)">&#10095;</a>
+      </div>
+
+      <div class="slideshow-container col-6">
+        <div class="mySlides2">
+          <img src="C:\Code Test\PetShop Project\promo\promo4Artboard-2.png" style="width:100%">
+        </div>
+
+        <div class="mySlides2">
+          <img src="C:\Code Test\PetShop Project\promo\promo5Artboard-2.png" style="width:100%">
+        </div>
+
+        <div class="mySlides2">
+          <img src="C:\Code Test\PetShop Project\promo\promo6Artboard-2.png" style="width:100%">
+        </div>
+
+        <a class="prev pl-0 pt-2" onclick="plusSlides(-1, 1)">&#10094;</a>
+        <a class="next pr-3 pt-2" onclick="plusSlides(1, 1)">&#10095;</a>
+      </div>
+
+    </div> -->
+
+
+      </div>
+
+      <style>
+        body {
+          background-color: #e6ccb4 !important;
+        }
+
+        * {
+          font-family: "Comfortaa", cursive !important;
+        }
+
+    
+        /* SLIDESHOW SLIDESHOW SLIDESHOW SLIDESHOW SLIDESHOW SLIDESHOW  */
+
+        * {
+          box-sizing: border-box;
+        }
+
+        .mySlides1, .mySlides2 {
+          display: none;
+        }
+
+        img {
+          vertical-align: middle;
+        }
+
+        .slideshow-container {
+          max-width: 1000px;
+          position: relative;
+          margin: auto;
+          padding: 5px 5px;
+        }
+
+        .prev, .next {
+          text-align: left !important;
+          cursor: pointer;
+          position: absolute;
+          top: 50%;
+          width: auto;
+          padding: 10px;
+          margin-top: -22px;
+          color: white;
+          font-weight: bold;
+          font-size: 18px;
+          transition: 0.6s ease;
+          border-radius: 0 3px 3px 0;
+          user-select: none;
+        }
+
+        .next {
+          right: 0;
+          border-radius: 3px 0 0 3px;
+        }
+
+        .prev:hover, .next:hover {
+          background-color: #f1f1f1;
+          color: black;
+        }
+
+        /* BREADCRUMB BREADCRUMB BREADCRUMB BREADCRUMB BREADCRUMB */
+        .directory {
+          height: 50px;
+          line-height: 50px;
+          padding-left: 15px;
+          font-size: 1rem;
+          margin: 0;
+        }
+
+      </style>
+
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,590 @@
+<% layout('../views/layouts/userboilerplate') %>
+<link rel="stylesheet" href="/css/star.css">
+
+  <div class="row mainproduct">
+    <div class="col-12 col-md-5">
+
+      <div id="productCarousel" class="carousel slide" data-ride="carousel" >
+        <div class="carousel-inner">
+
+          <% product.img.forEach((image, i) => { %>           
+          <div class="carousel-item <%= i === 0 ? 'active' : ''%>">
+            <img src="<%= image.url %>" class="d-block w-100"  alt="">
+          </div>
+          <% }) %>
+        </div>
+        <% if(product.img.length > 1) { %>
+        <a class="carousel-control-prev" href="#productCarousel" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#productCarousel" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+        <% } %>
+        <% for( let image of product.img ) { %>
+          <img src="<%= image.url %>" class="small-img ">
+          <% } %>
+      </div>
+
+     
+    </div>
+
+    
+    <div class="col-12 col-md-7 productDt">
+      <p class="name">
+        <%=product.name%>
+      </p>
+      <p><span><b>Tag: </b></span>
+        <span class="tag">
+          <%=product.tag[0]%>
+        </span>
+        <span class="tag">
+          <%=product.tag[1]%>
+        </span>
+      </p>
+      <p class="status instock"><span><b>Status: </b></span>
+        <%=product.qty%> left in stock
+      </p>
+      <p class="price">
+        <%=product.price%> Baht
+      </p>
+
+      <div class="quantity buttons_added">
+        <input type="button" value="-" class="minus"><input type="number" step="1" min="1" max="" name="quantity"
+          value="1" title="Qty" class="input-text qty text" size="4" pattern="" inputmode=""><input type="button"
+          value="+" class="plus">
+        <button class="add-btn">Add to Cart</button>
+      </div>
+
+    </div>
+  </div>
+
+
+
+  <nav>
+    <div class="nav nav-tabs mt-3" id="nav-tab" role="tablist">
+      <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab"
+        aria-controls="nav-home" aria-selected="true">Detail</a>
+      <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab"
+        aria-controls="nav-profile" aria-selected="false">Review</a>
+
+    </div>
+  </nav>
+  <div class="tab-content" id="nav-tabContent">
+
+    <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+        <%=product.detail%>
+      </>
+    </div>
+
+
+    <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+      <div class="row">
+
+
+
+<!-- ************************* -->
+<!-- Average Rating Calculator -->
+        <% let totalRating = 0; %>
+        <% for (let review of product.reviews) { %> 
+        <% let rating = review.rating %>
+        <% totalRating += rating; %>
+        <% } %>
+        <% let averageRating = totalRating/product.reviews.length; %>
+        <% let starRating = Math.floor(averageRating)+1; %>
+
+<% if (product.reviews.length == 0) { %>
+    <p class="m-auto">Sorry, there's no review for this product yet</p>
+<% } else { %>
+        <div class="col-12 col-md-5 rating">
+          <b>Average Rating: </b>
+          <p class="totalscore"><span id="score"><%= averageRating %></span>/5</p>
+        </div>
+
+        <!-- Progress bar -->
+        <div class="col-12 col-md-7">
+
+          <p class="starability-result" data-rating="<%= starRating %>">
+          </p>
+          <p class="totalreview">Total review: <%= product.reviews.length %></p>
+        
+          <!-- <div class="pgblock">
+            <span>5</span>
+            <div class="progress">
+              <div class="progress-bar" role="progressbar" style="width: 0%" aria-valuenow="100" aria-valuemin="0"
+                aria-valuemax="100"></div>
+            </div>
+          </div>
+          <div class="pgblock">
+            <span>4</span>
+            <div class="progress">
+              <div class="progress-bar" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0"
+                aria-valuemax="100"></div>
+            </div>
+          </div>
+          <div class="pgblock">
+            <span>3</span>
+            <div class="progress">
+              <div class="progress-bar" role="progressbar" style="width: 0%" aria-valuenow="100" aria-valuemin="0"
+                aria-valuemax="100"></div>
+            </div>
+          </div>
+          <div class="pgblock">
+            <span>2</span>
+            <div class="progress">
+              <div class="progress-bar" role="progressbar" style="width: 0%" aria-valuenow="100" aria-valuemin="0"
+                aria-valuemax="100"></div>
+            </div>
+          </div>
+          <div class="pgblock">
+            <span>1</span>
+            <div class="progress">
+              <div class="progress-bar" role="progressbar" style="width: 0%" aria-valuenow="100" aria-valuemin="0"
+                aria-valuemax="100"></div>
+            </div>
+          </div> -->
+        </div>
+        <% } %>
+      </div>
+      <!-- Add New Review -->
+      <div class="new-review">
+        <p><b>Leave a review</b></p>
+        <% if(!currentUser) { %>
+        
+            <p> You must  <a data-toggle="modal" data-target="#loginModal" class="login-link"><b> >> Login << </b></a>  to leave a review </p>
+
+        <% } else { %>
+          <form action="/product/<%=product._id%>/reviews" method="POST">
+            <label class="form-label" for="rating">Rating</label> <br>
+            <fieldset class="starability-basic">
+              <input type="radio" id="no-rate" class="input-no-rate" name="review[rating]" value="1" checked aria-label="No rating." />
+              <input type="radio" id="first-rate1" name="review[rating]" value="1" />
+              <label for="first-rate1" title="Terrible">1 star</label>
+              <input type="radio" id="first-rate2" name="review[rating]" value="2" />
+              <label for="first-rate2" title="Not good">2 stars</label>
+              <input type="radio" id="first-rate3" name="review[rating]" value="3" />
+              <label for="first-rate3" title="Average">3 stars</label>
+              <input type="radio" id="first-rate4" name="review[rating]" value="4" />
+              <label for="first-rate4" title="Very good">4 stars</label>
+              <input type="radio" id="first-rate5" name="review[rating]" value="5" />
+              <label for="first-rate5" title="Amazing">5 stars</label>
+            </fieldset>
+            <!-- <input type="range" class="form-range" min="0" max="5" step="1" name="review[rating]" id="rating" required> -->
+            <label for="body">Review</label>
+            <textarea name="review[body]" id="body" row="3" placeholder="write a review" required></textarea>
+            <p class="text-right"><button class="btn review-btn">Submit Review</button></p>
+          </form>
+          
+        <% } %>
+      </div>
+
+      <!-- Customer Review -->
+
+
+      <% for (let review of product.reviews) {%>
+
+        <div class="customer-review">
+          <p><b>Review By: </b> <span> <%= review.owner.username %>  </span></p>
+          <b>Rating: </b>
+          <%= review.rating%>
+          <p class="starability-result" data-rating="<%= review.rating%>">
+          </p>
+            <p>
+              <%= review.body%>
+            </p>
+            <% if( currentUser && review.owner.equals(currentUser._id)) {%>
+            <form action="/product/<%=product._id%>/reviews/<%=review._id%>?_method=DELETE" method="POST">
+            <button class="btn btn-sm">Delete</button></form>
+            <% } %>
+
+        </div>
+        <% } %>
+
+    </div>
+
+
+  </div>
+
+
+
+
+
+  <style>
+    .nav {
+      display: flex;
+    }
+
+    .nav-item {
+      border-bottom: white 1px solid;
+    }
+
+
+    .tag {
+      font-size: 0.8rem;
+      background: rgb(189, 136, 93);
+      color: white;
+      padding: 3px 5px;
+      border-radius: 5px;
+      margin-left: 5px;
+    }
+
+    .new-review {
+      margin: 10px 20px;
+      border-top: 1px solid rgb(209, 209, 209);
+      padding-top: 10px;
+    }
+
+    .new-review label {
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    textarea {
+      border: 1px solid rgb(209, 209, 209);
+      border-radius: 10px;
+      width: -webkit-fill-available;
+
+    }
+
+    .login-link:hover {
+      text-decoration: underline solid black 1px;
+    }
+
+    .form-range {
+      width: 100%;
+    }
+
+    .review-btn {
+      font-size: 0.8rem;
+      background-color: #e1b183;
+      color: white;
+      font-weight: 600;
+      margin-right: 0;
+    }
+
+    .review-btn:hover {
+      color: rgb(90, 90, 90);
+      border: 2px solid rgb(90, 90, 90);
+    }
+
+    /* Product Detail */
+    .productImg {
+      width: 90%;
+    }
+
+    .mainproduct {
+      width: 100%;
+      border-top: #dee2e6 1px solid;
+      padding: 5px;
+      margin: 0 !important;
+    }
+
+    .productDt .tag {
+      font-size: 0.7rem;
+    }
+
+    .tag a {
+      color: rgb(58, 58, 58);
+      background-color: #e6ccb4;
+      padding: 3px;
+      border-radius: 5px;
+    }
+
+    .tag a:hover {
+      color: white;
+      background-color: grey;
+      text-decoration: white underline 1px;
+    }
+
+    .productDt .status {
+      font-size: 0.8rem;
+    }
+
+    .name {
+      margin-top: 10px;
+      font-size: 1.2rem;
+      font-weight: 600;
+    }
+
+    .price {
+      color: coral;
+      font-weight: 600;
+    }
+
+    /* Quantity button */
+    /* -- quantity box -- */
+
+    .quantity {
+      display: inline-block;
+    }
+
+    .quantity .input-text.qty {
+      width: 35px;
+      height: 40px;
+      padding: 0 5px;
+      text-align: center;
+      background-color: transparent;
+      border: 1px solid #dbdbdb;
+    }
+
+    .quantity.buttons_added {
+      text-align: left;
+      position: relative;
+      white-space: nowrap;
+      vertical-align: top;
+    }
+
+    .quantity.buttons_added input {
+      display: inline-block;
+      margin: 0;
+      vertical-align: top;
+      box-shadow: none;
+    }
+
+    .quantity.buttons_added .minus,
+    .quantity.buttons_added .plus {
+      padding: 7px 10px 8px;
+      height: 40px;
+      background-color: #ffffff;
+      border: 1px solid #dbdbdb;
+      cursor: pointer;
+    }
+
+    .quantity.buttons_added .minus {
+      border-right: 0;
+    }
+
+    .quantity.buttons_added .plus {
+      border-left: 0;
+    }
+
+    .quantity.buttons_added .minus:hover,
+    .quantity.buttons_added .plus:hover {
+      background: #eeeeee;
+    }
+
+    .quantity input::-webkit-outer-spin-button,
+    .quantity input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      margin: 0;
+    }
+
+    .quantity.buttons_added .minus:focus,
+    .quantity.buttons_added .plus:focus {
+      outline: none;
+    }
+
+    /* add button */
+    .add-btn {
+      height: 40px;
+      background-color: coral;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 0.8rem;
+    }
+
+    .add-btn:hover {
+      background-color: rgb(245, 115, 68);
+    }
+
+    /* Tabs */
+
+    a.nav-item,
+    a.nav-link {
+      font-size: 1rem !important;
+      font-weight: 600;
+      color: rgb(83, 83, 83) !important;
+    }
+
+    a.nav-item .active {
+      background-color: #efbc6b;
+      color: #efbc6b;
+    }
+
+    .tab-content {
+      font-size: 0.8rem;
+      padding: 19px;
+      border-bottom: #dee2e6 solid 1px;
+    }
+
+    /* REVIEW REVIEW REVIEW REVIEW REVIEW REVIEW REVIEW REVIEW REVIEW */
+
+    /* Score */
+    .rating .totalscore {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: rgb(134, 134, 134);
+    }
+
+    .rating p #score {
+      font-size: 2rem;
+      color: rgb(83, 83, 83);
+    }
+
+    .rating .totalreview {
+      margin-top: 25px;
+      font-size: 0.8rem !important;
+      color: rgb(134, 134, 134);
+    }
+
+    /* Total Paw vote */
+    .rating {
+      padding-left: 30px !important;
+    }
+
+    .paw {
+      display: inline-block;
+      position: relative;
+    }
+
+    .paw .voted {
+      display: none;
+    }
+
+    .rating .checked .base {
+      display: none;
+    }
+
+    .rating .checked .voted {
+      display: inline;
+    }
+
+    /* Individual Customer Review */
+    .customer-review {
+      border: #dee2e6 solid 1px;
+      border-radius: 10px;
+      padding: 10px;
+      margin: 5px 20px 10px 20px;
+      font-size: 0.8rem;
+    }
+
+    .customer-review p {
+      margin: 5px 0px;
+    }
+
+    .customer-review .paw img {
+      width: 15px;
+    }
+
+    .customer-review .checked .base {
+      display: none;
+    }
+
+    .customer-review .checked .voted {
+      display: inline;
+    }
+
+    /* PROGRESS BAR PROGRESS BAR PROGRESS BAR PROGRESS BAR PROGRESS BAR */
+    .progress {
+      margin: 7px;
+      width: 85%;
+    }
+
+    .progress-bar {
+      background-color: #ffbf00 !important;
+    }
+
+    .pgblock {
+      display: flex;
+    }
+
+    .pgblock span {
+      width: 15px;
+      height: 1rem;
+      margin: 7px;
+      font-size: 1rem;
+      font-weight: 600;
+      color: rgb(83, 83, 83);
+    }
+
+    /* CUSRTOMER REVIEW CUSRTOMER REVIEW CUSRTOMER REVIEW CUSRTOMER REVIEW CUSRTOMER REVIEW */
+
+    /* RELATED PRODUCTS */
+    .related-products p {
+      padding: 15px;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: rgb(83, 83, 83);
+      margin-bottom: 0%;
+    }
+
+    .product {
+      width: 90%;
+      height: fit-content;
+      background-color: rgb(255, 255, 255);
+      text-align: center;
+      padding: 5px;
+      line-height: 1;
+    }
+
+    .productpic {
+      width: 90%;
+      max-height: 250px;
+    }
+
+    .product:hover {
+      border-radius: 5px;
+      border: #ffe6cf solid 1px;
+    }
+
+    .product p {
+      font-size: 0.9rem;
+      font-weight: 500;
+      padding: 3px;
+    }
+
+    .price {
+      font-size: 1rem;
+      color: rgb(211, 86, 13);
+      font-weight: 600;
+    }
+
+    .carousel-control-prev-icon:hover,
+    .carousel-control-next-icon:hover {
+      background-color: gray;
+      border-radius: 3px;
+    }
+  
+    .small-img {
+      border: rgb(214, 214, 214) solid 1px;
+      width: 23%;
+    }
+
+  </style>
+
+
+<script>
+  // qtybutton
+  function wcqib_refresh_quantity_increments() {
+    jQuery("div.quantity:not(.buttons_added), td.quantity:not(.buttons_added)").each(function (a, b) {
+      var c = jQuery(b);
+      c.addClass("buttons_added"), c.children().first().before('<input type="button" value="-" class="minus" />'), c.children().last().after('<input type="button" value="+" class="plus" />')
+    })
+  }
+  String.prototype.getDecimals || (String.prototype.getDecimals = function () {
+    var a = this,
+      b = ("" + a).match(/(?:\.(\d+))?(?:[eE]([+-]?\d+))?$/);
+    return b ? Math.max(0, (b[1] ? b[1].length : 0) - (b[2] ? +b[2] : 0)) : 0
+  }), jQuery(document).ready(function () {
+    wcqib_refresh_quantity_increments()
+  }), jQuery(document).on("updated_wc_div", function () {
+    wcqib_refresh_quantity_increments()
+  }), jQuery(document).on("click", ".plus, .minus", function () {
+    var a = jQuery(this).closest(".quantity").find(".qty"),
+      b = parseFloat(a.val()),
+      c = parseFloat(a.attr("max")),
+      d = parseFloat(a.attr("min")),
+      e = a.attr("step");
+    b && "" !== b && "NaN" !== b || (b = 0), "" !== c && "NaN" !== c || (c = ""), "" !== d && "NaN" !== d || (d = 0), "any" !== e && "" !== e && void 0 !== e && "NaN" !== parseFloat(e) || (e = 1), jQuery(this).is(".plus") ? c && b >= c ? a.val(c) : a.val((b + parseFloat(e)).toFixed(e.getDecimals())) : d && b <= d ? a.val(d) : b > 0 && a.val((b - parseFloat(e)).toFixed(e.getDecimals())), a.trigger("change")
+  });
+
+  const user = require("./models/user");
+
+
+
+
+</script>

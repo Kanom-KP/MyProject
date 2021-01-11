@@ -1,0 +1,137 @@
+<% layout('../views/layouts/adminboilerplate') %>
+
+    <div class="container addproduct">
+        <h4><b>Add new product</b></h4>
+        <form action="/admin/product/all" method="POST" enctype="multipart/form-data">
+
+            <div class="textinput part">
+                <label for="name"><b>Product Name</b></label><br>
+                <input type="text" name="product[name]" id="name" placeholder="Name" required> <br>
+
+                <label for="brand"><b>Brand of product</b></label><br>
+                <input type="text" name="product[brand]" id="brand" placeholder="Brand" required> <br>
+
+                <label for="price"><b>Price (Baht)</b></label><br>
+                <input type="number" name="product[price]" id="price" placeholder="price" required> <br>
+
+                <label for="detail"><b>Product Detail</b></label><br>
+                <textarea type="text" name="product[detail]" id="detail" rows="3" placeholder="Detail..."required></textarea><br>
+
+                <label for="img"><b>Select image</b></label><br>
+                <input type="file" id="" name="img" multiple>
+
+            </div>
+    
+            <div class="part">
+                <label for="tag"> <b>Type of Pet : </b> <br></label>
+                <select name="product[tag]" id="tag" required>
+                    <option> </option>
+                    <option value="Dog" >Dog</option>
+                    <option value="Cat" >Cat</option>
+                    <option value="Rabbit" >Rabbit</option>
+                    <option value="Hamster" >Hamster</option>
+                </select>
+                <br>
+                
+                <label for="tag"> <b>Type of Product : </b> <br></label>
+                <select name="product[tag]" id="tag" required>
+                    <option ></option>
+                    <option value="Food" >Food</option>
+                    <option value="Vitamins & Supplement">Vitamins & Supplement</option>
+                    <option value="Toys" >Toys</option>
+                    <option value="Grooming" >Grooming</option>
+                    <option value="Bed & Crates" >Bed & Crates</option>
+                    <option value="Collar & Clothes" >Collar & Clothes</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+
+
+
+            <div class="part">
+                <div>
+                    <b>Status : </b> <br>
+                    <label for="isAvailable">
+                        <input type="radio" name="product[isAvailable]" id="isAvailable" value="true"> Active</label>
+
+                    <label for="isAvailable">
+                        <input type="radio" name="product[isAvailable]" id="isAvailable" value="false"> Inactive</label>
+                </div>
+                <div class="textinput">
+                    <label for="qty"><b>Quantity</b></label><br>
+                    <input type="number" name="product[qty]" id="qty" placeholder="Quantity">
+                </div>
+            </div>
+            <br>
+            <div class="text-center">
+                <button class="btn" type="submit">Add Product</button>
+            </div>
+        
+        </form>
+        <div class="text-center mt-1">
+            <button class="btn"><a href="/admin/product/all">Back to all product</a></button>
+        </div>
+
+    </div>
+
+
+
+    <!-- STYLE STYLE -->
+    <style>
+        .addproduct {
+            font-size: 0.9rem;
+            padding: 15px 20px;
+            margin: auto;
+            width: fit-content;
+        }
+
+        label {
+            padding-top: 10px;
+            padding-bottom: 0px;
+            margin: 0;
+        }
+
+        input,
+        textarea {
+            border: 1px solid rgb(209, 209, 209);
+            border-radius: 5px;
+
+        }
+
+        .textinput input,
+        textarea {
+            width: 400px;
+            min-height: 30px;
+        }
+
+        ::placeholder {
+            font-size: 0.8rem;
+            color: rgb(153, 153, 153);
+        }
+
+        a {
+            color: white;
+        }
+
+        a:hover {
+            color: rgb(90, 90, 90);
+            text-decoration: none;
+        }
+
+        .btn {
+            background-color: #e1b183;
+            color: white;
+            font-weight: 600;
+        }
+
+        .btn:hover {
+            color: rgb(90, 90, 90);
+            border: 2px solid rgb(90, 90, 90);
+        }
+
+        .part {
+            border-top: 1px solid #e1b183;
+            padding: 20px;
+        }
+    </style>
+

@@ -1,0 +1,80 @@
+<% layout('../views/layouts/userboilerplate') %>
+    <div class="row">
+        <% for (let p of activeproduct) { %>
+
+            <div class="productcard col-6 col-md-6 col-lg-3" onclick="window.location.href='/product/<%= p._id %>'">
+                <img class="productpic"
+                    src="https://scontent.fbkk22-1.fna.fbcdn.net/v/t1.0-9/126166123_168697574925807_2615467665062636256_o.jpg?_nc_cat=108&ccb=2&_nc_sid=8bfeb9&_nc_eui2=AeEMocITJEK9XptaIc_L_vfvkk6GQE1A5u-SToZATUDm797rp1rIzVG_iMrNTozCzbUh-_IUj8UvYEiYGT5L3Y8G&_nc_ohc=1TUZyT0fDSQAX-V8wbD&_nc_ht=scontent.fbkk22-1.fna&oh=06126221c1775c1413719de60a253074&oe=5FFC35A1">
+                <p class="productname text-center">
+                    <%=p.name %>
+                </p>
+
+                <div class="text-left pl-2">
+                    <p class=""> <b> Tag : </b>
+                        <span class="tag">
+                            <%=p.tag[0]%>
+                        </span>
+                        <span class="tag">
+                            <%=p.tag[1]%>
+                        </span>
+                    </p>
+                    <p> <b> Price : </b>
+                        <%=p.price %> &#3647;
+                    </p>
+                    <p> <b> Brand : </b>
+                        <%=p.brand %>
+                    </p>
+
+                </div>
+            </div>
+
+
+
+            <% } %>
+    </div>
+    <style>
+        body {
+            font-size: 0.8rem;
+        }
+
+        .row {
+            margin: 0;
+        }
+
+        .productcard {
+            min-height: 340px !important;
+            margin: 0;
+            padding: 10px;
+            display: inline-block;
+        }
+
+        .productcard p {
+            margin-top: 15px;
+            margin-bottom: 0;
+        }
+
+        .productcard:hover {
+            border: bisque 1px solid;
+        }
+
+        .productpic {
+            margin: auto;
+            width: 100%;
+
+        }
+
+        .productname {
+            font-size: 0.9rem;
+            margin-top: 10px;
+            font-weight: 600;
+        }
+
+        .tag {
+            font-size: 0.7rem;
+            background: rgb(189, 136, 93);
+            color: white;
+            padding: 3px 5px;
+            border-radius: 5px;
+            margin-left: 3px;
+        }
+    </style>
