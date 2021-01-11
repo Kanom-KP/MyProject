@@ -47,10 +47,12 @@ const ProductSchema = new Schema ({
         }
     ],
 
-    img: [{ 
-        url: String,
-        filename: String
-    }]
+    img: [
+        { 
+            url: String,
+            filename: String
+        }
+    ]
 });
 
 ProductSchema.post('findOneAndDelete', async function (doc) {

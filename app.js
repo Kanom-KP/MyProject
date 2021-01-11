@@ -87,6 +87,7 @@ db.once('open', () => {
     console.log('Database connected');
 });
 
+// Registration modal
 app.post('/regis', catchAsync(async (req,res,next) => {
     try {
         const {email, username, password} = req.body;
@@ -104,12 +105,14 @@ app.post('/regis', catchAsync(async (req,res,next) => {
         }
 })) 
 
+// Login Modal
 app.post('/login', passport.authenticate('local', { failerFlash: true, failureRedirect: '/login'  }), (req,res) => {
     req.flash('success', 'Welcome to FurFriends');
     const redirectUrl = req.session.returnTo || '/product/all' ;
     delete req.session.returnTo;
     res.redirect(redirectUrl);
 })
+
 
 app.get('/logout', (req,res) => {
     req.logout();

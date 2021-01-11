@@ -15,22 +15,24 @@ const Address = require('../models/address');
 
 // Admin routes begin with /admin
 
-// Main Page / delete /add
-router.route('/product/all') 
-    .get(catchAsync(admins.allProduct))
-    .delete(catchAsync(admins.deleteFromMainPage))
-    .post (upload.array('img'),(catchAsync(admins.addProduct)));
+// **********   __   __   __  __         __ ___  **********************************************
+// **********  |__| |__| |  | |  \ |  | |    |   **********************************************
+// **********  |    | \  |__| |__/ |__| |__  |   DATA, ADD, EDIT, DELETE***********************
 
-// Product Detail
+// Product data table / delete product 
+router.route('/product/all') 
+    .get(catchAsync(admins.allProduct)) 
+
+// Product Detail / delete product / edit existing product
 router.route('/product/:id')
     .get(catchAsync(admins.productDetail))
-    .delete(catchAsync(admins.deleteFromDetailPage))
+    .delete(catchAsync(admins.deleteProduct))
     .put(catchAsync(admins.updateProduct)); 
 
 // Add new product
-router.get('/addnew',(req,res) => {
-    res.render('admin/add')
-})
+router.get('/addnew',(req,res) => { res.render('admin/add')});
+router.route('/addnew')
+    .post (upload.array('img'),(catchAsync(admins.addProduct)));
 
 
 // Edit Product
@@ -40,21 +42,18 @@ router
 
 // **********  |   |  __   ___  ,__  **********************************************
 // **********  |   | |__  |___| |    **********************************************
-// **********  |___|  __| |___  |    **********************************************
+// **********  |___|  __| |___  |    DATA, EDIT, DELETE****************************
 
-// All User
+// All User data table
 router.get('/user/all', catchAsync(admins.allUser));
-
-// Delete User from main page
-router.delete('/user/all', catchAsync(admins.deleteUserFromMainPage));
 
 // User Detail
 router.get('/user/:id', catchAsync(admins.userDetail)); 
 
-// Delete User in User Detail page
-router.delete('/user/:id', catchAsync(admins.deleteUserFromDetailPage)); 
+// Delete User 
+router.delete('/user/:id', catchAsync(admins.deleteUser)); 
 
-// // Edit User
+// Edit User
 router.get('/user/:id/edit', catchAsync(admins.editUser));
 
 router.put('/user/:id', catchAsync(admins.updateUser)) ;

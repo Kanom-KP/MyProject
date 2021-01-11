@@ -1,12 +1,13 @@
 const Product = require('../models/product');
 const User = require('../models/user');
 
+
 module.exports.allProduct = async (req,res) => {
     const product = await Product.find({})
     res.render('admin/allproduct', { product })
 };
 
-module.exports.deleteFromMainPage = async (req,res) => {
+module.exports.deleteProduct = async (req,res) => {
     const { id } = req.params;
     const product = await Product.findByIdAndDelete(id);
     req.flash('success', 'Product deleted!');
@@ -22,12 +23,7 @@ module.exports.productDetail = async (req, res) => {
     res.render('admin/detail', { product });
 };
 
-module.exports.deleteFromDetailPage = async (req, res) => {
-    const { id } = req.params;
-    const product = await Product.findByIdAndDelete(id);
-    req.flash('success', 'Product deleted!');
-    res.redirect('/admin/product/all')
-};
+
 
 module.exports.addProduct = async (req,res) => { 
     const newProduct = new Product(req.body.product);
@@ -52,14 +48,14 @@ module.exports.updateProduct  = async (req, res) => {
 
 // **********  |   |  __   ___  ,__  **********************************************
 // **********  |   | |__  |___| |    **********************************************
-// **********  |___|  __| |___  |    **********************************************
+// **********  |___|  __| |___  |     DATA **********************************************
 
 module.exports.allUser = async (req,res) => {
     const user = await User.find({})
     res.render('admin/alluser', { user })
 };
 
-module.exports.deleteUserFromMainPage = async (req,res) => {
+module.exports.deleteUser = async (req,res) => {
     const { id } = req.params;
     const user = await User.findByIdAndDelete(id);
     req.flash('success', 'User deleted!');
@@ -73,13 +69,6 @@ module.exports.userDetail = async (req, res) => {
         return res.redirect('/admin/user/all')
     }
     res.render('admin/userdetail', { user });
-};
-
-module.exports.deleteUserFromDetailPage = async (req, res) => {
-    const { id } = req.params;
-    const user = await User.findByIdAndDelete(id);
-    req.flash('success', 'User deleted!');
-    res.redirect('/admin/user/all')
 };
 
 module.exports.editUser = async(req,res) => {
