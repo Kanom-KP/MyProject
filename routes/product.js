@@ -13,8 +13,6 @@ const { isLoggedIn } = require('../middleware')
 
 //  product routes begin with /product
 
-// Register
-
 // all product
 router.get('/all', 
     catchAsync(products.allProducts));
@@ -32,9 +30,5 @@ router.post('/:id/reviews',
 router.delete('/:id/reviews/:reviewId', 
     isLoggedIn, 
     catchAsync(products.deleteReview))
-
-
-
-
 
 module.exports = router;

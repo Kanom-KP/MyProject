@@ -1,20 +1,3 @@
-<script>
-    var check = function() {
-        const password = document.getElementsByClassName('password');
-        const confirm = document.getElementsByClassName('confirm_password');
-  if (password.value === confirm.value) {
-    document.getElementById('message').style.color = 'green';
-    document.getElementById('message').innerHTML = 'Password matching';
-    document.getElementById('regisBtn').disabled = false;
-  } else {
-    document.getElementById('message').style.color = 'red';
-    document.getElementById('message').innerHTML = 'Password not matching';
-    document.getElementById('regisBtn').disabled = true;
-  }
-}
-</script>
-
-
 <div class="mybody">
     <!-- Main Nav Show when Middle++ -->
     <div>
@@ -29,23 +12,24 @@
 
                     <% } else { %>
 
-                        <% if(currentUser.isAdmin === true) { %>
+                        <% if(currentUser.isAdmin===true) { %>
 
                             <button type="button" class="btn">
                                 <a href="/admin/product/all">Admin Ver.</a></button>
-                            
-                            <% } else { } %>    
 
-                        <button type="button" class="btn">
-                            <a href="/logout">Logout</a>
-                        </button>
-                        <button type="button" class="btn">
-                            <a href="/user/profile/<%= currentUser._id%>">Profile</a>
-            
-                        </button>
-                        <a href="/user/<%= currentUser._id%>/cart"><img width="25px" src="https://res.cloudinary.com/furfriends-project/image/upload/v1610114175/cart_y1xnpm.png"></a>
-                    <% } %>
-                            
+                            <% } else { } %>
+
+                                <button type="button" class="btn">
+                                    <a href="/logout">Logout</a>
+                                </button>
+                                <button type="button" class="btn">
+                                    <a href="/user/profile/<%= currentUser._id%>">Profile</a>
+
+                                </button>
+                                <a href="/user/<%= currentUser._id%>/cart"><img width="25px"
+                                        src="https://res.cloudinary.com/furfriends-project/image/upload/v1610114175/cart_y1xnpm.png"></a>
+                                <% } %>
+
             </span>
         </nav>
         <!-- side nav -->
@@ -61,31 +45,44 @@
     </div>
 
     <!-- Toggler Nav Show when small only!! -->
-    <!-- <nav class="navbar navbar-expand-sm navbar-dark fixed-top showsm p-0">
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03"
-        aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <a class="navbar-brand" href="#">FurFriends</a>
+    <nav class="navbar navbar-expand-sm navbar-dark fixed-top showsm">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03"
+            aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand" href="/product/all">FurFriends</a>
 
-      <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
-        <ul class="navbar-nav mr-auto">
-          <li><a class="active" href="#">New Arrival!</a></li>
-          <li><a href="#">Dog Food & Treats</a></li>
-          <li><a href="#">Toys & Dolls</a></li>
-          <li><a href="#">Grooming Products</a></li>
-          <li><a href="#">Beds & Crates</a></li>
-          <li><a href="#">Collars & Harnesses</a></li>
-          <li><a href="#">Clothes</a></li>
-          <li><a href="#">Vitamins & Supplements</a></li>
-          <li><a href="#">All Products</a></li>
-        </ul> -->
-    <!-- <form class="form-inline my-2 my-lg-0">
-          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form> -->
-</div>
-</nav>
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+            <ul class="navbar-nav mr-auto">
+                <li><a class="active" href="#">All Products</a></li>
+                <li><a href="#">Dog Food & Treats</a></li>
+                <li><a href="#">Toys & Dolls</a></li>
+                <li><a href="#">Grooming Products</a></li>
+                <li><a href="#">Beds & Crates</a></li>
+                <li><a href="#">Collars & Harnesses</a></li>
+                <li><a href="#">Clothes</a></li>
+                <li><a href="#">Vitamins & Supplements</a></li>
+
+                <% if(!currentUser) { %>
+                    <li><a><button type="button" class="btn" data-toggle="modal"
+                                data-target="#loginModal"><b>Login</b></button></a></li>
+
+                    <% } else { %>
+
+                        <% if(currentUser.isAdmin===true) { %>
+
+                            <li><a href="/admin/product/all">Admin Ver.</a></li>
+
+                            <% } else { } %>
+                                <li><a href="/user/<%= currentUser._id%>/cart">Shopping Cart</a></li>
+                                <li><a href="/user/profile/<%= currentUser._id%>">Profile</a></li>
+                                <li><a href="/logout">Logout</a></li>
+
+
+                                <% } %>
+            </ul>
+        </div>
+    </nav>
 
 </div>
 
@@ -121,7 +118,7 @@
     </div>
 </div>
 
-<!-- SIGN UP MODAL -->
+<!-- REGISTER MODAL -->
 <div class="modal fade" id="regisModal" tabindex="-1" aria-labelledby=regisModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -141,31 +138,37 @@
                         <input type="email" id="email" name="email" placeholder="E-Mail" required>
 
                         <label for="password">Password <span>(8 characters minimum)</span></label>
-                        <input type="password" class="password" id="password" name="password" placeholder="Password" minlength="8" required>
+                        <input type="password" class="password" id="password" name="password" placeholder="Password"
+                            minlength="8" required>
 
                         <label for="confirm_password">Confirm your Password</label>
-                        <input type="password" class="confirm_password" id="confirm_password" placeholder="Password" required onkeyup='check();'>
-                        <span id="message"></span>
+                        <input type="password" class="confirm_password" id="confirm_password" placeholder="Password">
                         <br>
-        
-                        <button id="regisBtn" type="submit" class="btn btn-primary" disabled >Register</button>
+
+                        <p class="text-center"><button id="regisBtn" type="submit"
+                                class="btn btn-primary">Register</button></p>
 
                     </form>
                 </div>
-                <br>
                 <span>By creating an account you agree to our .<a href="#">Terms & Privacy</a></span>
             </div>
         </div>
     </div>
 </div>
 
+
 <style>
-    /* RESPONSIVE RESPONSIVE RESPONSIVE RESPONSIVE RESPONSIVE RESPONSIVE */
+    /* RESPONSIVE ***************************/
+    /* Small */
     @media only screen and (max-width: 576px) {
 
         .shrink,
         .showlg {
             display: none !important;
+        }
+
+        .navbar {
+            padding: 0 !important;
         }
 
         .mycontent,
@@ -179,9 +182,11 @@
 
         ul {
             width: 60% !important;
+            margin-top: 4px;
         }
     }
 
+    /* Medium */
     @media only screen and (min-width: 577px) {
         .showsm {
             display: none !important;
@@ -193,6 +198,7 @@
 
     }
 
+    /* Large */
     @media only screen and (min-width: 768px) {
         .showsm {
             display: none !important;
@@ -204,7 +210,7 @@
     }
 
 
-    /* BODY BODY BODY BODY BODY BODY BODY BODY BODY*/
+    /* BODY ******************************/
     .mybody {
         background-color: white;
         line-height: 1.2;
@@ -226,11 +232,11 @@
         height: fit-content;
     }
 
-    /* NAVBAR NAVBAR NAVBAR NAVBAR NAVBAR NAVBAR NAVBAR*/
+    /* NAVBAR******************************/
     .navbar {
         color: white;
         background-color: #e1b183;
-        padding: 0 11% !important;
+        padding: 0 11%;
         height: 55px;
     }
 
@@ -248,7 +254,7 @@
         color: rgb(93, 93, 93);
     }
 
-    /* SIDE NAV SIDE NAV SIDE NAV SIDE NAV SIDE NAV */
+    /* SIDE NAV ******************************/
     ul {
         list-style-type: none;
         padding: 2px 3px;
@@ -280,7 +286,7 @@
         color: white;
     }
 
-    /* Login MODAL MODAL MODAL MODAL MODAL MODAL MODAL MODAL */
+    /* Login MODAL *****************************/
     .modal {
         padding: 0px !important;
     }
@@ -340,7 +346,7 @@
         color: #007bff !important;
     }
 
-    /* Sign Up MODAL MODAL MODAL MODAL MODAL MODAL MODAL MODAL */
+    /* Sign Up MODAL *******************************/
     #regisModal .modal-body span {
         font-size: 0.8rem;
         color: grey;
@@ -366,3 +372,19 @@
         width: auto !important;
     }
 </style>
+
+<script>
+    var check = function () {
+        const password = document.getElementsByClassName('password');
+        const confirm = document.getElementsByClassName('confirm_password');
+        if (password.value === confirm.value) {
+            document.getElementById('message').style.color = 'green';
+            document.getElementById('message').innerHTML = 'Password matching';
+            document.getElementById('regisBtn').disabled = false;
+        } else {
+            document.getElementById('message').style.color = 'red';
+            document.getElementById('message').innerHTML = 'Password not matching';
+            document.getElementById('regisBtn').disabled = true;
+        }
+    }
+</script>

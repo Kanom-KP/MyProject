@@ -15,33 +15,34 @@
                 <input type="number" name="product[price]" id="price" placeholder="price" required> <br>
 
                 <label for="detail"><b>Product Detail</b></label><br>
-                <textarea type="text" name="product[detail]" id="detail" rows="3" placeholder="Detail..."required></textarea><br>
+                <textarea type="text" name="product[detail]" id="detail" rows="3" placeholder="Detail..."
+                    required></textarea><br>
 
                 <label for="img"><b>Select image</b></label><br>
                 <input type="file" id="" name="img" multiple>
 
             </div>
-    
+
             <div class="part">
                 <label for="tag"> <b>Type of Pet : </b> <br></label>
                 <select name="product[tag]" id="tag" required>
                     <option> </option>
-                    <option value="Dog" >Dog</option>
-                    <option value="Cat" >Cat</option>
-                    <option value="Rabbit" >Rabbit</option>
-                    <option value="Hamster" >Hamster</option>
+                    <option value="Dog">Dog</option>
+                    <option value="Cat">Cat</option>
+                    <option value="Rabbit">Rabbit</option>
+                    <option value="Hamster">Hamster</option>
                 </select>
                 <br>
-                
+
                 <label for="tag"> <b>Type of Product : </b> <br></label>
                 <select name="product[tag]" id="tag" required>
-                    <option ></option>
-                    <option value="Food" >Food</option>
+                    <option></option>
+                    <option value="Food">Food</option>
                     <option value="Vitamins & Supplement">Vitamins & Supplement</option>
-                    <option value="Toys" >Toys</option>
-                    <option value="Grooming" >Grooming</option>
-                    <option value="Bed & Crates" >Bed & Crates</option>
-                    <option value="Collar & Clothes" >Collar & Clothes</option>
+                    <option value="Toys">Toys</option>
+                    <option value="Grooming">Grooming</option>
+                    <option value="Bed & Crates">Bed & Crates</option>
+                    <option value="Collar & Clothes">Collar & Clothes</option>
                     <option value="Other">Other</option>
                 </select>
             </div>
@@ -66,7 +67,7 @@
             <div class="text-center">
                 <button class="btn" type="submit">Add Product</button>
             </div>
-        
+
         </form>
         <div class="text-center mt-1">
             <button class="btn"><a href="/admin/product/all">Back to all product</a></button>
@@ -100,7 +101,7 @@
 
         .textinput input,
         textarea {
-            width: 400px;
+            min-width: 350px;
             min-height: 30px;
         }
 
@@ -134,4 +135,3 @@
             padding: 20px;
         }
     </style>
-

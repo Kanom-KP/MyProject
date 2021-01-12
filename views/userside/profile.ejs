@@ -14,7 +14,6 @@
 
 
     <div class="detail">
-        <p class="name">User Detail</p>
         <p><b>Username : </b>
             <%= user.username %>
         </p>
@@ -25,6 +24,7 @@
     </div>
 
     <p><b class="header">Addresses</b></p>
+    
 <% if(currentUser && currentUser.address !== ['']) {%>
     <% for (let address of user.addresses) {%>
 

@@ -4,11 +4,10 @@
         <h4><b>Edit User</b></h4>
         <form action="/admin/user/<%=user._id%>?_method=PUT" method="POST">
             <div class="textinput part">
-                <p class="name">User Detail</p>
                 <p><b>Username : </b>  <%= user.username %></p>
                 <p><b>Email : </b>  <%= user.email %></p>
 
-                <b>Role : </b> <br>
+                <b>Role : </b>
                 <label for="isAdmin">
                     <input type="radio" name="user[isAdmin]" id="isAdmin" value="true"
                         <%=user.isAdmin===true ? 'checked' : '' %>> Admin</label>
@@ -30,7 +29,8 @@
 
     <!-- STYLE STYLE -->
     <style>
-        .addproduct {
+
+        .container {
             background-color: rgb(255, 250, 245);
             font-size: 0.9rem;
             padding: 15px 20px;
@@ -38,30 +38,14 @@
             width: fit-content;
         }
 
+        h4 {
+            padding-left: 20px;
+        }
+
         label {
             padding-top: 10px;
             padding-bottom: 0px;
             margin: 0;
-        }
-
-        input,
-        textarea {
-            border: 1px solid rgb(209, 209, 209);
-            border-radius: 5px;
-            font-size: 0.8rem;
-            color: rgb(53, 53, 53);
-
-        }
-
-        .textinput input,
-        textarea {
-            width: 400px;
-            min-height: 30px;
-        }
-
-        ::placeholder {
-            font-size: 0.8rem;
-            color: rgb(153, 153, 153);
         }
 
         a {
@@ -89,7 +73,4 @@
             padding: 20px;
         }
 
-        h4 {
-            padding-left: 20px;
-        }
     </style>

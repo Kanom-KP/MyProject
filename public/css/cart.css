@@ -1,31 +1,4 @@
-/* PRODUCT PRODUCT PRODUCT PRODUCT PRODUCT PRODUCT PRODUCT */
-.product {
-    width: 90%;
-    height: fit-content;
-    background-color: rgb(255, 255, 255);
-    text-align: center;
-    padding: 5px;
-    line-height: 1;
-  }
-  
-  .productpic {
-    width: 90%;
-  }
-  
-  .product:hover {
-    border-radius: 5px;
-    border: #ffe6cf solid 1px;
-  }
-  
-  .price {
-    font-size: 1.2rem;
-    color: rgb(211, 86, 13);
-    font-weight: 600;
-  }
-  
   /* Quantity button */
-/* -- quantity box -- */
-
 .quantity {
     display: inline-block;
   }
@@ -88,25 +61,12 @@
   }
 
 
-  /* DELETE button */
-.del-btn {
-    height: 30px;
-    background-color: coral;
-    color: white;
-    border: none;
-    border-radius: 10px;
-    font-size: 0.8rem;
-  }
-  
-  .del-btn:hover {
-    background-color: rgb(245, 115, 68);
-  }
 
 
   /* CART CART CART CART CART CART CART CART CART CART */
   .cart {
-      margin: 55px 20px 20px 20px;
-      padding: 30px;
+      margin: 25px;
+      padding: 0 20px;
       font-size: 0.9rem;
       color: rgb(63, 63, 63);
   }
@@ -118,8 +78,7 @@
 
   .all-item {
       border-radius: 15px;
-      padding: 15px
-      border    
+      padding: 10px
   }
 
   .cart-item {
@@ -159,3 +118,21 @@
       margin: 5px 20px;
       border-radius: 10px;
   }
+
+  .btn a {
+    color: white;
+  }
+
+    /* DELETE button */
+.del-btn {
+  height: 25px;
+  background-color: coral;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 0.8rem;
+}
+
+.del-btn:hover {
+  background-color: rgb(245, 115, 68);
+}

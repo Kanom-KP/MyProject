@@ -21,11 +21,6 @@ router.get('/profile/:id', catchAsync(users.userProfile));
 router.get('/:id/cart', catchAsync(users.shoppingCart));
 
 
-// // Edit User
-// router.get('/profile/:id/edit', isLoggedin, catchAsync(users.editProfile));
-
-// router.put('/profile/:id', isLoggedin, catchAsync(users.updateProfile));
-
 // // Add Address
 router.post('/profile/:id/addresses', 
     catchAsync(users.newAddress));
@@ -33,5 +28,11 @@ router.post('/profile/:id/addresses',
 // // Delete Address
 router.delete('/profile/:id/address/:addressId', 
     catchAsync(users.deleteAddress));
+
+
+// // Edit User
+// router.get('/profile/:id/edit', isLoggedin, catchAsync(users.editProfile));
+
+// router.put('/profile/:id', isLoggedin, catchAsync(users.updateProfile));
 
 module.exports = router;

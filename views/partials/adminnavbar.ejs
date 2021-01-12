@@ -4,13 +4,13 @@
     <!-- Main Nav Show when Middle++ -->
     <div>
         <nav class="navbar navbar-dark fixed-top showlg">
-            <a class="navbar-brand">FurFriends</a>
-            <a href="/admin/user/all"> All User </a>
-            <a href="/admin/product/all"> All Product </a>
+            <a class="navbar-brand" href="/product/all">FurFriends</a>
+            
 
             
             <span class="navbar-text">
-    
+                <a href="/admin/user/all"> All User</a> /
+                <a href="/admin/product/all"> All Product</a> /
                     <a href="/product/all"> Back to user ver. </a>
 
             </span>
@@ -20,20 +20,9 @@
 
 
 <style>
-    /* RESPONSIVE RESPONSIVE RESPONSIVE RESPONSIVE RESPONSIVE RESPONSIVE */
-    @media only screen and (max-width: 576px) {
-
-        .mycontent,
-        .mybody {
-            margin: 0px !important;
-        }
-
-        .navbar {
-            padding-left: 2% !important;
-        }
-    }
-
-    @media only screen and (min-width: 577px) {
+    /* RESPONSIVE *********************************/
+    /* Small - Medium */
+    @media only screen and (max-width: 577px) {
 
         .mycontent,
         .mybody {
@@ -46,7 +35,7 @@
         }
 
     }
-
+    /* Large */
     @media only screen and (min-width: 768px) {
 
         .mycontent,
@@ -57,7 +46,7 @@
         }
 
         .navbar {
-            padding:0  17% !important;
+            padding:0  10% !important;
         }
 
     }
@@ -84,17 +73,6 @@
         font-size: 1.5rem !important;
     }
 
-    .navbar-text button {
-        color: white;
-    }
 
-    .navbar-text button:hover {
-        color: rgb(93, 93, 93);
-    }
-
-    .navbar a {
-        color:white;
-
-    }
 
 </style>

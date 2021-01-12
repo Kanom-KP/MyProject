@@ -1,6 +1,6 @@
 <% layout('../views/layouts/adminboilerplate') %> 
 
-    <div class="container detail">
+    <div class="container">
     <p class="name"><%= product.name %></p>
     
     <div class="text-center">
@@ -44,18 +44,9 @@ function confirmation(){
 
 .container {
     margin-top: 0!important;
-
-}
-
-.detail {
     width: fit-content;
     margin: auto!important;
-    margin-top: 25px;
-}
 
-.editndel {
-    width: fit-content;
-    margin: auto;
 }
 
 .name {
@@ -72,7 +63,13 @@ function confirmation(){
     margin-left:5px ;
 }
 
+
 /* Button */
+
+.editndel {
+    width: fit-content;
+    margin: auto;
+}
 
 .btn {
     font-weight: 600;
