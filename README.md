@@ -1,5 +1,5 @@
 # FurFriends
-This is my first web-development project that I try to use everything that I've learned from "The Web Developer Bootcamp 2020" online course 
+This is my first web-development project that I try to use what I've learned from "The Web Developer Bootcamp 2020" online course 
 including
 - HTML
 - CSS 
