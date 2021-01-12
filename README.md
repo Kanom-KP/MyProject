@@ -7,7 +7,8 @@ including
 - Node. js
 - Express
 - MongoDB
-This might not be the perfect website due to my lack of experiences and it's not fully finished yet. So, please bare with it if you still see anything doesn't work the way it should be I'll try to make it all work soon. 
+
+This might not be the perfect website due to my lack of experiences and it's not fully finished yet. So, please understand if you still see anything doesn't work the way it should be I'll try to make it all work soon. 
 
 Thank you for stopping by :)
 -KK
